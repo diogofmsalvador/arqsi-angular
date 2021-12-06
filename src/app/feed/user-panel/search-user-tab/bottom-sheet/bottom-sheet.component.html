@@ -1,0 +1,6 @@
+<mat-nav-list *ngFor="let user of allUserData">
+  <a mat-list-item (click)="changeMiddleTabMethod(user.username)">
+    <span mat-line>{{user.name}}</span>
+    <span mat-line>Nome de utilizador: {{user.username}}</span>
+  </a>
+</mat-nav-list>

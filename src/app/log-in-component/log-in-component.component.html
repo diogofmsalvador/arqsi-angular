@@ -1,0 +1,101 @@
+<mat-card [@fadeInOutCard]="isOpen ? 'fadeInCard' : 'fadeOutCard'" class="login-card">
+  <div class="container" *ngIf="isRegisterClicked==false">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-sm-6 col-md-6 col-lg-6">
+          <img class="img-open" [@setImage]="isImageOpen ? 'PictureInWithOpacity' : 'PictureSet'" [@fadeInOut]="isOpenImage ? 'fadeIn' : 'fadeOut'" src="../../assets/Screenshot_2021-12-03_at_19.54.07-removebg-preview.png"/>
+          <div class="text-class" style="color: #3b1f42;text-align: center; width: 85%; transform: translate(5%, -70%)" [@fadeInOut]="showText ? 'fadeIn' : 'fadeOut'">
+            <p>
+              Participe no novo jogo social do momento.
+              Conheça novas pessoas com os mesmos gostos, publique as suas opiniões e participe em missões com o objetivo de conseguir e socializar com pessoas indicadas as suas preferências.
+              Participe agora!
+            </p>
+            <p>ARQSI SOCIAL GAME™</p>
+            <p>Diogo Salvador</p>
+            <p>Hugo Carrulo</p>
+            <p>Ana Guedes</p>
+          </div>
+          <div [@fadeInOut]="isComponentOpen ? 'fadeIn' : 'fadeOut'" class="d-flex" style="height: 100%; width: 1px; transform: translateY( -100%); float: right">
+            <div class="vr"></div>
+          </div>
+        </div>
+        <div class="col-sm-6 col-md-6 col-lg-6 p-5" [@fadeInOut]="isComponentOpen ? 'fadeIn' : 'fadeOut'">
+          <div class="container-fluid">
+            <div class="row justify-content-center mb-3">
+              <h1 style="color: #3b1f42; text-align: center"><strong><i class="fas fa-sign-in-alt"></i> Inicio de sessão</strong></h1>
+              <hr>
+              <form [formGroup]="formUser" class="mt-3">
+                <div class="row gradient-login" style="border: 1px outset rgba(59, 31, 66, 0.2); border-radius: 10px;">
+                  <mat-form-field style="width: 90%; margin-left: 15px" class="p-2" appearance="legacy">
+                    <mat-label><i class="fas fa-at"></i> Username</mat-label>
+                    <input type="email" formControlName="username" matInput id="Username">
+                    <mat-error>
+                      Email inválido!
+                    </mat-error>
+                  </mat-form-field>
+                </div>
+                <div class="row mt-3 gradient-login" style="border: 1px outset rgba(59, 31, 66, 0.2); border-radius: 10px;">
+                  <mat-form-field style="width: 90%; margin-left: 15px" class="p-2" appearance="legacy" >
+                    <mat-label><i class="fas fa-key"></i> Password</mat-label>
+                    <input formControlName="pass" [type]="hide ? 'password' : 'text'" matInput id="Password">
+                    <mat-icon style="cursor: pointer" matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                    <mat-error >
+                      Não cumpre os requesitos!
+                    </mat-error>
+                  </mat-form-field>
+                </div>
+                <div class="row">
+                  <button mat-raised-button (click)="logInRequest()" class="iniciar-button w-100 mt-4">Iniciar Sessão</button>
+                </div>
+              </form>
+            </div>
+        </div>
+          <hr class="m-4">
+          <div class="row justify-content-center">
+            <h5 style="text-align: center; margin-bottom: 3px">Ainda não se registou?</h5>
+            <h5 style="text-align: center">Clique no botão em baixo para se juntar ao clube 🥰</h5>
+            <div class="row" style="display: flex;text-align: center">
+              <button mat-raised-button (click)="initRegister()" style="width: 95%; margin-left: 2.5%; margin-right: 2.5%" class="iniciar-button mt-4">🥳 Registe-se agora 😎</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="isRegisterClicked" [@slideInOut]>
+    <app-register-popup [isRegister]="1"  (onHide)="changeToLogIn($event)"></app-register-popup>
+  </div>
+</mat-card>
+<!-- [@setImage]="isImageOpen ? 'PictureInWithOpacity' : 'PictureSet'" [@fadeInOut]="isOpen ? 'fadeIn' : 'fadeOut'" -->
+<!--<form [formGroup]="formUser" class="center-vertical">
+  <h6 class="justify-content-center row mb-3 mt-3" style="font-size: 150%">Efetue LogIn</h6>
+
+  <div class="row justify-content-center mb-2">
+    <mat-form-field style="width: 35%" appearance="legacy" >
+      <mat-label><i class="fas fa-at"></i> Email</mat-label>
+      <input type="email" formControlName="email" matInput id="Username">
+      <mat-error>
+        Email inválido!
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field style="width: 35%" appearance="legacy" >
+      <mat-label><i class="fas fa-key"></i> Password</mat-label>
+      <input formControlName="pass" [type]="hide ? 'password' : 'text'" matInput id="Password">
+      <mat-icon style="cursor: pointer" matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+      <mat-error >
+        Não cumpre os requesitos!
+      </mat-error>
+    </mat-form-field>
+    <div class="row justify-content-center">
+      <button mat-stroked-button color="primary" (click)="logInRequest()"  class="btn col-6">
+        Entrar
+      </button>
+    </div>
+    <div class="row justify-content-center mt-2">
+      <button mat-stroked-button color="primary" (click)="getUsers()"  class="btn col-6">
+        Get Users
+      </button>
+    </div>
+  </div>
+</form>-->
+

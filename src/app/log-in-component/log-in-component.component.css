@@ -1,0 +1,71 @@
+.login-card {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  height: 600px;
+  width: 70%;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 0 20px 8px rgba(0, 0, 0, 0.2);
+}
+
+.text-class {
+  transform: translate(-0%, 0%);
+  opacity: 0;
+}
+
+.img-open
+{
+  left: 0%;
+  top: 0%;
+  transform: translate(37%, 15%) scale(1);
+}
+
+.center-vertical {
+  left      : 50%;
+  top       : 50%;
+  position  : absolute;
+  transform : translate(-50%, -50%);
+}
+
+hr.vertical {
+  position: absolute;
+  width: 1px;
+  height: 100%;
+  background-color: grey;
+  transform: translate(-50%, -50%);
+  /* or height in PX */
+}
+
+div .gradient-login {
+  background: rgb(40,0,91);
+  background: linear-gradient(0deg, rgba(40,0,91,0.2) 0%, rgba(127,32,138,0.2) 0%, rgba(255,255,255,0.2) 100%);
+}
+
+.iniciar-button {
+  background: linear-gradient(151deg, #a81f1f, #c8582e, #866bf0);
+  background-size: 600% 600%;
+  color: white;
+
+  -webkit-animation: AnimationName 7s ease infinite;
+  -moz-animation: AnimationName 7s ease infinite;
+  animation: AnimationName 7s ease infinite;
+}
+
+@-webkit-keyframes AnimationName {
+  0%{background-position:34% 0%}
+  50%{background-position:67% 100%}
+  100%{background-position:34% 0%}
+}
+@-moz-keyframes AnimationName {
+  0%{background-position:34% 0%}
+  50%{background-position:67% 100%}
+  100%{background-position:34% 0%}
+}
+@keyframes AnimationName {
+  0%{background-position:34% 0%}
+  50%{background-position:67% 100%}
+  100%{background-position:34% 0%}
+}
+

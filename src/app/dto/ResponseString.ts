@@ -1,0 +1,7 @@
+export enum ResponseString{
+  AWAITING_MESSAGES,
+  AWAITING_MIDDLE,
+  PENDING,
+  APPROVED,
+  DENIED
+}

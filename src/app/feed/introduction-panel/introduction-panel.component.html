@@ -1,0 +1,61 @@
+<mat-accordion class="example-headers-align" multi>
+  <mat-expansion-panel>
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+          <i class="fas fa-check-circle" style="color: #1f7e11; font-size: 20px; margin-right: 10px"></i>Introduções
+      </mat-panel-title>
+      <mat-panel-description>
+        Aceites
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+
+    <div *ngIf="isOk">
+    <div class="m-1" *ngFor="let introduction of IntroductionsPedidasAccept" >
+      <app-introduction-request  [idUser]="introduction.introduction_Request_From_User"  [isMyIntroduction]="isMyIntroduction" [idUserObjective]="introduction.introduction_Request_To_User" [menssagem]="introduction.message_To_User_Objective" [setColor]="1"></app-introduction-request>
+    </div>
+      <div *ngIf="IntroductionsPedidasAccept.length==0">
+        Nenhuma introdução!
+      </div>
+    </div>
+
+
+  </mat-expansion-panel>
+  <!-- disabled -->
+  <mat-expansion-panel>
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        <i class="fas fa-exclamation-circle" style="color: #bdb60e; font-size: 20px; margin-right: 10px"></i>  Introduções
+      </mat-panel-title>
+      <mat-panel-description style="">
+        Pendentes
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+    <div *ngIf="isOk">
+    <div *ngFor="let introduction of IntroductionsPedidasAwaiting">
+      <app-introduction-request [idIntroduction]="introduction.introduction_Id"  [idUser]="introduction.introduction_Request_From_User"  [isMyIntroduction]="isMyIntroduction"  [idUserObjective]="introduction.introduction_Request_To_User" [menssagem]="introduction.message_To_User_Objective" [setColor]="2"></app-introduction-request>
+    </div>
+      <div *ngIf="IntroductionsPedidasAwaiting.length==0">
+        Nenhuma introdução!
+      </div>
+    </div>
+  </mat-expansion-panel>
+
+  <mat-expansion-panel>
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        <i class="fas fa-times-circle" style="color: #9d3434; font-size: 20px; margin-right: 10px"></i>  Introduções
+      </mat-panel-title>
+      <mat-panel-description style="">
+        Recusadas
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+    <div *ngIf="isOk">
+    <div  *ngFor="let introduction of IntroductionsPedidasDenied">
+      <app-introduction-request [idUser]="introduction.introduction_Request_From_User"  [isMyIntroduction]="isMyIntroduction"  [idUserObjective]="introduction.introduction_Request_To_User" [menssagem]="introduction.message_To_User_Objective" [setColor]="3"></app-introduction-request>
+    </div>
+      <div *ngIf="IntroductionsPedidasDenied.length==0">
+            Nenhuma introdução!
+      </div>
+    </div>
+  </mat-expansion-panel>
+</mat-accordion>

@@ -1,0 +1,12 @@
+.icon-user {
+  color: #c57474;
+}
+
+mat-slider {
+  text-align: center;
+  width: 300px;
+}
+
+mat-form-field {
+  width: 300px;
+}

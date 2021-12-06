@@ -1,0 +1,121 @@
+<div style="min-height: 400px">
+<mat-toolbar class="toolbar-conf" [@fadeInOut]="isComponentOpen ? 'fadeIn' : 'fadeOut'">
+    <span>
+      🥰 Bem-vindo ao processo de registo.
+    </span>
+  <span class="example-spacer"></span>
+  <button mat-icon-button class="example-icon" style="float: right" aria-label="Example icon-button with share icon">
+    <mat-icon (click)="exitRegister()" >close</mat-icon>
+  </button>
+</mat-toolbar>
+<form [formGroup]="formNewUser" [@fadeInOut]="isComponentOpen ? 'fadeIn' : 'fadeOut'">
+<div class="container">
+  <div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-6 col-md-6 col-lg-6 p-4">
+          <div class="row gradient-login" id="disableOnUpdate" style="border: 1px outset rgba(59, 31, 66, 0.2); border-radius: 10px;">
+            <mat-form-field style="width: 90%; margin-left: 15px" class="p-2" appearance="legacy">
+              <mat-label><i class="fas fa-user"></i> Nome de utilizador</mat-label>
+              <input type="text"  matInput [formControlName]="'username'" id="Nome_de_utilizador" >
+              <mat-error>
+                Nome de utilizador inválido!
+              </mat-error>
+            </mat-form-field>
+          </div>
+          <div class="row gradient-login mt-2" style="border: 1px outset rgba(59, 31, 66, 0.2); border-radius: 10px;">
+            <mat-form-field style="width: 90%; margin-left: 15px" class="p-2" appearance="legacy">
+              <mat-label><i class="fas fa-at"></i> Email</mat-label>
+              <input type="email" matInput [formControlName]="'EmailUser'" id="Email">
+              <mat-error>
+                Email inválido!
+              </mat-error>
+            </mat-form-field>
+          </div>
+          <div class="row gradient-login mt-2" style="border: 1px outset rgba(59, 31, 66, 0.2); border-radius: 10px;">
+            <mat-form-field style="width: 90%; margin-left: 15px" class="p-2" appearance="legacy">
+              <mat-label><i class="fas fa-key"></i> Palavra-Passe</mat-label>
+              <input type="password" [formControlName]="'pass'" matInput id="Palavra_Passe">
+              <mat-error>
+                Palavra-passe inválido!
+              </mat-error>
+            </mat-form-field>
+          </div>
+          <div class="row gradient-login mt-2" style="border: 1px outset rgba(59, 31, 66, 0.2); border-radius: 10px;">
+            <mat-form-field style="width: 90%; margin-left: 15px" class="p-2" appearance="legacy">
+              <mat-label><i class="fas fa-key"></i> Confirmar Palavra-Passe</mat-label>
+              <input type="password" [formControlName]="'passVerify'" matInput id="check_Palavra_Passe">
+              <mat-error>
+                Palavra-passe não cumpre os requsitos!
+              </mat-error>
+            </mat-form-field>
+          </div>
+          <div class="row gradient-login mt-2" style="border: 1px outset rgba(59, 31, 66, 0.2); border-radius: 10px;">
+            <mat-form-field style="width: 90%; margin-left: 15px; transform: translateY(5%)" class="p-2" appearance="legacy">
+              <mat-label><i class="fas fa-layer-group"></i> Estado emocional</mat-label>
+              <mat-select [formControlName]="'emotionalState'">
+                <mat-option [value]="emocional.HAPPY">😄 Feliz</mat-option>
+                <mat-option [value]="emocional.SAD">😢 Triste</mat-option>
+                <mat-option [value]="emocional.MEH">😑 Indiferente</mat-option>
+                <mat-option [value]="emocional.EXCITED">😃 Excitado</mat-option>
+                <mat-option [value]="emocional.ANGRY">😡 Furioso</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="col-sm-6 col-md-6 col-lg-6 p-4">
+          <div class="row gradient-login" style="border: 1px outset rgba(59, 31, 66, 0.2); border-radius: 10px;">
+            <mat-form-field style="width: 90%; margin-left: 15px" class="p-2" appearance="legacy">
+              <mat-label><i class="fas fa-signature"></i> Nome</mat-label>
+              <input type="text" matInput id="Nome" [formControlName]="'Nome'">
+              <mat-error>
+                Nome inválido!
+              </mat-error>
+            </mat-form-field>
+          </div>
+          <div class="row gradient-login mt-2" style="border: 1px outset rgba(59, 31, 66, 0.2); border-radius: 10px;">
+            <mat-form-field style="width: 90%; margin-left: 15px" class="p-2" appearance="legacy">
+              <mat-label><i class="fas fa-phone"></i> Telemóvel (Opcional)</mat-label>
+              <input type="text" matInput [formControlName]="'telemovel'" id="Phone">
+              <mat-error>
+                Telemóvel inválido!
+              </mat-error>
+            </mat-form-field>
+          </div>
+          <div class="row gradient-login mt-2" style="border: 1px outset rgba(59, 31, 66, 0.2); border-radius: 10px;">
+            <mat-form-field style="width: 90%; margin-left: 15px" class="p-2" appearance="legacy">
+              <mat-label>Data de nascimento</mat-label>
+              <input  matInput [matDatepicker]="picker" id="dataNascimento" [formControlName]="'date'">
+              <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+              <mat-datepicker #picker startView="year" [startAt]="startDate"></mat-datepicker>
+            </mat-form-field>
+          </div>
+          <div class="row gradient-login mt-2" style="border: 1px outset rgba(59, 31, 66, 0.2); border-radius: 10px; height: 158px; max-height: 158px">
+            <mat-form-field style="width: 90%; margin-left: 15px; max-height: 150px; overflow-y: auto" class="p-2" appearance="legacy">
+              <mat-label>Tags de interesse</mat-label>
+              <mat-chip-list  #chipList aria-label="Tags de interesse">
+                <mat-chip *ngFor="let tag of tags" [selectable]="selectable"
+                          [removable]="removable" (removed)="remove(tag)">
+                  {{tag.name}}
+                  <button matChipRemove *ngIf="removable">
+                    <mat-icon>cancel</mat-icon>
+                  </button>
+                </mat-chip>
+
+                <input placeholder="Nova tag..."
+                       [matChipInputFor]="chipList"
+                       [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                       [matChipInputAddOnBlur]="addOnBlur"
+                       (matChipInputTokenEnd)="add($event)">
+              </mat-chip-list>
+            </mat-form-field>
+          </div>
+        </div>
+    </div>
+  </div>
+</div>
+<hr class="m-0 p-0">
+<div class="row" style="display: flex;text-align: center">
+  <button mat-raised-button style="width: 95%; margin-left: 2.5%; margin-right: 2.5%;margin-top:15px" id="buttonSave" (click)="handlerFunction();" class="toolbar-conf mt-3">Concluir Registo</button>
+</div>
+</form>
+</div>

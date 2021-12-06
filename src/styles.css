@@ -1,0 +1,31 @@
+/* You can add global styles to this file, and also import other style files */
+
+html, body { height: 100%; }
+body {
+  margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+.css-selector {
+  background: linear-gradient(151deg, #a81f1f, #c8582e, #866bf0);
+  background-size: 600% 600%;
+
+  -webkit-animation: AnimationName 7s ease infinite;
+  -moz-animation: AnimationName 7s ease infinite;
+  animation: AnimationName 7s ease infinite;
+}
+
+@-webkit-keyframes AnimationName {
+  0%{background-position:34% 0%}
+  50%{background-position:67% 100%}
+  100%{background-position:34% 0%}
+}
+@-moz-keyframes AnimationName {
+  0%{background-position:34% 0%}
+  50%{background-position:67% 100%}
+  100%{background-position:34% 0%}
+}
+@keyframes AnimationName {
+  0%{background-position:34% 0%}
+  50%{background-position:67% 100%}
+  100%{background-position:34% 0%}
+}
