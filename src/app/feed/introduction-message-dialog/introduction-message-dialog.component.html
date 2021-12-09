@@ -1,0 +1,13 @@
+<div mat-dialog-content style="text-align: center">
+  <p>Qual a mensagem que pretende enviar ao utilizador?</p>
+  <div class="d-flex justify-content-center">
+    <mat-form-field appearance="fill">
+      <mat-label>Mensagem</mat-label>
+      <input matInput [(ngModel)]="data">
+    </mat-form-field>
+  </div>
+</div>
+<div class="d-flex justify-content-center" mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">Sair</button>
+  <button mat-button [mat-dialog-close]="data" cdkFocusInitial>Submeter</button>
+</div>

@@ -1,0 +1,30 @@
+image: node:16
+
+pipelines:
+  default:
+    #- step:
+    #    name: Installation
+    #    caches:
+    #      - node
+    #    script:
+    #      - npm install
+        #artifacts:
+        #  - node_modules/** # Save modules for next steps
+    - step:
+        name: Push to Git
+        script:
+          #- git init
+          #- git remote remove origin
+          #- git add -f *
+          #- git remote add origin https://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@github.com/diogofmsalvador/arqsi-angular.git
+          #- git rm -r --cached node_modules
+          #- git reset --hard origin/master
+          #- git pull origin master -X ours --allow-unrelated-histories
+          
+          #- git commit -m "New Commit to Bitbucket / Redirecting to Github"
+          - git pull https://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@github.com/diogofmsalvador/arqsi-angular.git -X ours --allow-unrelated-histories
+          - git rm -r --cached .angular
+          - git rm -r --cached node_modules
+          - git commit -m "Commit from Bitbucket Pipeline"
+          - git rev-parse --verify HEAD
+          - git push https://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@github.com/diogofmsalvador/arqsi-angular.git

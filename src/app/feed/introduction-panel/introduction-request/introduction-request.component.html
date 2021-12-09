@@ -1,0 +1,35 @@
+<mat-card class="introduction_card{{setColor}}" id="">
+  <h2 style="margin-left: 10px"><i class="fas fa-envelope-open-text" style="margin-right: 10px"></i> {{menssagem}}</h2>
+  <hr>
+  <div class="container">
+    <!-- completed -->
+    <div class="step completed">
+      <div class="v-stepper">
+        <div class="circle"></div>
+        <div class="line"></div>
+      </div>
+
+      <div class="content">
+        Utilizador: {{userName}}
+      </div>
+    </div>
+
+    <!-- active -->
+    <div class="step active">
+      <div class="v-stepper">
+        <div class="circle"></div>
+        <div class="line"></div>
+      </div>
+
+      <div class="content">
+        Utilizador: {{userNameObjective}}
+      </div>
+    </div>
+
+    <div *ngIf="!isMyIntroduction && setColor == 2" class="row justify-content-center " style="margin-top: 4px">
+      <button mat-raised-button class="success " (click)="acceptIntroduction()"  style="margin-right: 2px;width: 40%">Aceitar</button>
+      <button mat-raised-button color="warn" (click)="rejectIntroduction()"  style="margin-left: 2px;width: 40%">Rejeitar</button>
+    </div>
+
+  </div>
+</mat-card>

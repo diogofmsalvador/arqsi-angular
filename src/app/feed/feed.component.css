@@ -1,0 +1,62 @@
+.toolbar-conf {
+  border-radius: 10px;
+  opacity: 0.8;
+  box-shadow: 0 0 20px 8px rgba(0, 0, 0, 0.2);
+}
+
+.example-spacer {
+  flex: 1 1 auto;
+}
+
+.login-card {
+  opacity: 0.8;
+  border-radius: 10px;
+  height: 96%;
+  width: 100%;
+  overflow: hidden;
+  box-shadow: 0 0 20px 8px rgba(0, 0, 0, 0.2);
+}
+
+.grid-conf {
+  height: 100%;
+}
+
+.mat-menu-content {
+  padding: 0;
+}
+
+.menu-conf {
+  width: 400px;
+}
+
+.title-card {
+  background: linear-gradient(145deg, #9d3434, #c57474, #b674c5);
+  background-size: 600% 600%;
+  box-shadow: 0px 13px 37px 4px rgba(0,0,0,0.2);
+  border-radius: 10px;
+  color: white;
+
+  -webkit-animation: AnimationName 20s ease infinite;
+  -moz-animation: AnimationName 20s ease infinite;
+  animation: AnimationName 20s ease infinite;
+}
+
+@-webkit-keyframes AnimationName {
+  0%{background-position:11% 0%}
+  50%{background-position:90% 100%}
+  100%{background-position:11% 0%}
+}
+@-moz-keyframes AnimationName {
+  0%{background-position:11% 0%}
+  50%{background-position:90% 100%}
+  100%{background-position:11% 0%}
+}
+@keyframes AnimationName {
+  0%{background-position:11% 0%}
+  50%{background-position:90% 100%}
+  100%{background-position:11% 0%}
+}
+
+.middleSpacer {
+  transform: translateX(-22px);
+}

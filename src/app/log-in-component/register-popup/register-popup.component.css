@@ -1,0 +1,35 @@
+.toolbar-conf {
+  background: linear-gradient(151deg, #a81f1f, #c8582e, #866bf0);
+  background-size: 600% 600%;
+  color: white;
+  border-radius: 10px;
+
+  -webkit-animation: AnimationName 7s ease infinite;
+  -moz-animation: AnimationName 7s ease infinite;
+  animation: AnimationName 7s ease infinite;
+}
+
+div .gradient-login {
+  background: rgb(40,0,91);
+  background: linear-gradient(0deg, rgba(40,0,91,0.2) 0%, rgba(127,32,138,0.2) 0%, rgba(255,255,255,0.2) 100%);
+}
+
+.example-spacer {
+  flex: 1 1 auto;
+}
+
+@-webkit-keyframes AnimationName {
+  0%{background-position:34% 0%}
+  50%{background-position:67% 100%}
+  100%{background-position:34% 0%}
+}
+@-moz-keyframes AnimationName {
+  0%{background-position:34% 0%}
+  50%{background-position:67% 100%}
+  100%{background-position:34% 0%}
+}
+@keyframes AnimationName {
+  0%{background-position:34% 0%}
+  50%{background-position:67% 100%}
+  100%{background-position:34% 0%}
+}

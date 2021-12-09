@@ -1,0 +1,77 @@
+<div class="m-4" style="height: 100%; width: 97%; position: fixed">
+  <mat-toolbar class="toolbar-conf">
+    <span>
+      <img style="height: 50px" alt="ARQSI Social Game Logo Small" src="assets/logo_small.png"/>
+    </span>
+    <span class="m-4" style="color: #3b1f42">
+      ARQSI Social Game
+    </span>
+    <span class="example-spacer"></span>
+    <span style="float: right; font-size: 15px; margin-right: 5px; color: #3b1f42">{{username}}</span>
+    <button [matMenuTriggerFor]="menu" mat-icon-button class="example-icon" style="float: right"
+            aria-label="Example icon-button with share icon">
+      <i class="fas fa-user-circle" style="font-size: 30px; color: #3b1f42"></i>
+    </button>
+    <button mat-icon-button class="example-icon" style="float: right" aria-label="Example icon-button with share icon">
+      <i class="fas fa-cog" style="font-size: 30px; color: #3b1f42"></i>
+    </button>
+    <mat-menu #menu="matMenu" style="opacity: 0.8; padding: 0">
+      <div class="menu-conf" style="width: 240px">
+        <button mat-menu-item (click)="editProfile()"><i class="far fa-user"></i> <span style="float: right">Editar Perfil</span></button>
+        <button mat-menu-item><i class="far fa-image"></i> <span style="float: right">Editar Foto de Perfil</span></button>
+        <!--<hr>
+        <button mat-menu-item><i class="fas fa-user-friends"></i> <span style="float: right">Visualizar Amizades</span></button>
+        <button mat-menu-item><i class="fas fa-smile-wink"></i> <span style="float: right">Visualizar Introduções</span></button>
+        <button mat-menu-item><i class="fas fa-bullseye"></i> <span style="float: right">Visualizar Missões</span></button>-->
+      </div>
+    </mat-menu>
+
+  </mat-toolbar>
+
+  <mat-grid-list cols="4" style="height: calc(100vh - 90px)">
+    <mat-grid-tile class="" style="height: calc(100vh - 90px)">
+      <mat-card class="p-1 login-card">
+        <mat-toolbar class="m-0 title-card">
+          <span>Painel do Utilizador</span>
+        </mat-toolbar>
+        <div style="height: 90%; overflow-y: auto;">
+          <div class="m-3" style="">
+            <app-user-panel></app-user-panel>
+          </div>
+        </div>
+      </mat-card>
+    </mat-grid-tile>
+    <mat-grid-tile colspan="2" class="" style="height: calc(100vh - 90px)">
+      <mat-card class="m-3 p-1 login-card">
+        <mat-toolbar class="m-0 title-card" style="opacity: 1">
+          <button *ngIf="isBackOptionOn" (click)="goBackToPosts()" mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
+            <i class="fas fa-arrow-left" style="font-size: 25px; transform: translateY(-2px)"></i>
+          </button>
+          <span id="middleTitle" style="margin: auto;">{{titleText}}</span>
+        </mat-toolbar>
+        <div *ngIf="isBackOptionOn" style="height: 90%; overflow-y: auto;overflow-x: hidden">
+          <app-friend-panel></app-friend-panel>
+        </div>
+      </mat-card>
+    </mat-grid-tile>
+    <mat-grid-tile class="" style="height: calc(100vh - 90px)">
+      <mat-card class="p-1 login-card">
+        <mat-toolbar class="m-0 title-card">
+          <span style="">Introduções | Missões</span>
+        </mat-toolbar>
+        <div style="height: 90%; overflow-y: auto;">
+          <div class="m-3" style="">
+            <h2 style="margin-left: 10px; color: #3b1f42">Suas Introduções</h2>
+            <app-introduction-panel [yourIntroduction]="true" ></app-introduction-panel>
+          </div>
+          <hr>
+          <div class="m-3">
+            <h2 style="margin-left: 10px; color: #3b1f42"> Pedidos de Introduções</h2>
+            <app-introduction-panel  [yourIntroduction]="false"></app-introduction-panel>
+          </div>
+        </div>
+
+      </mat-card>
+    </mat-grid-tile>
+  </mat-grid-list>
+</div>

@@ -1,0 +1,25 @@
+<mat-accordion class="example-headers-align">
+
+  <mat-expansion-panel class="mt-4" hideToggle [(expanded)]="panelOpenState">
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        Procurar
+      </mat-panel-title>
+      <mat-panel-description>
+        Utilizadores
+        <i class="fas fa-users" style="transform: translateX(10px)"></i>
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+
+    <mat-form-field style="width: 90%; margin-left: 15px" class="p-2" appearance="legacy">
+      <mat-label>Nome de utilizador</mat-label>
+      <input type="text" matInput id="nome_utilizador">
+    </mat-form-field>
+    <mat-action-row>
+      <button mat-button color="primary" (click)="openBottomSheet()">Pesquisar</button>
+    </mat-action-row>
+
+  </mat-expansion-panel>
+
+
+</mat-accordion>
