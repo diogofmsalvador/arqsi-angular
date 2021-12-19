@@ -10,7 +10,7 @@ import {PostDto} from "../dto/PostDto";
   providedIn: 'root'
 })
 export class PostService {
-  url = 'https://arqsi-dotnet.herokuapp.com/api/Post';
+  url = 'https://localhost:5001//api/Post';
 
   customHeaders = new HttpHeaders({
     'Content-Type': 'application/json',

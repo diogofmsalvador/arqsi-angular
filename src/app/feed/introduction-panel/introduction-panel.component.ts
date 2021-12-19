@@ -14,9 +14,6 @@ export class IntroductionPanelComponent implements OnInit {
 
   @Input() yourIntroduction: boolean = false;
    MyIntroductions: IntroductionDto[] | null | undefined;
-//  MyIntroductionsAccept: IntroductionDto[] = [];
- // MyIntroductionsAwaiting: IntroductionDto[] = [];
- // MyIntroductionsDenied: IntroductionDto[] =[];
   IntroductionsPedidas : IntroductionDto[] | null | undefined;
   IntroductionsPedidasAccept : IntroductionDto[] =[];
   IntroductionsPedidasAwaiting : IntroductionDto[] = [];

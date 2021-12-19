@@ -32,7 +32,6 @@ export class ObjectiveUserTabComponent implements OnInit {
   constructor(public dialog: MatDialog, private _snackBar: MatSnackBar, private _mission: MissionService, private _user: logInService, private _introduction: IntroductionService) { }
 
   ngOnInit(): void {
-
   }
 
   processingMethod() {
@@ -44,7 +43,6 @@ export class ObjectiveUserTabComponent implements OnInit {
       this.userData =  response.body;
       // @ts-ignore
       this.loggedInUserId = response.body?.id_User;
-      console.log(this.userData);
       this._mission.getSuggestedUsers("2", this.userData?.id_User).subscribe(response => {
         // @ts-ignore
         this.suggestedUsers = response.body?._users;
@@ -67,7 +65,6 @@ export class ObjectiveUserTabComponent implements OnInit {
                 }
               }
 
-              console.log(this.suggestedUsers);
               // @ts-ignore
               for(let i = 0; i < this.suggestedUsers.length; i++){
                 // @ts-ignore
@@ -105,20 +102,17 @@ export class ObjectiveUserTabComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       if(result != null || result != undefined){
-
         // @ts-ignore
         this._user.getUserByUsername(this.selectedValue).subscribe(response => {
           // @ts-ignore
           this._introduction.addIntroductionBeginner(result, this.loggedInUserId, response.body?.id_User).subscribe(result => {
-            console.log(result);
+            this.openSnackBar();
+            setTimeout(()=>{
+              window.location.reload();
+            },500);
           });
         });
-
-        // @ts-ignore
-        this.openSnackBar();;
       }
-      console.log(result);
-      //this.animal = result;
     });
   }
 

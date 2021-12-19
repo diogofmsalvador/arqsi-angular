@@ -8,10 +8,8 @@ import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
 })
 export class IntroductionMessageDialogComponent {
 
-  constructor(
-    public dialogRef: MatDialogRef<IntroductionMessageDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: string,
-  ) {}
+  constructor(public dialogRef: MatDialogRef<IntroductionMessageDialogComponent>, @Inject(MAT_DIALOG_DATA) public data: string) {
+  }
 
   onNoClick(): void {
     this.dialogRef.close();

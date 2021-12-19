@@ -4,3 +4,6 @@
     <span mat-line>Nome de utilizador: {{user.username}}</span>
   </a>
 </mat-nav-list>
+<mat-nav-list *ngIf="allUserData.length===0">
+  <span mat-line>Nenhum utilizador encontrado!</span>
+</mat-nav-list>

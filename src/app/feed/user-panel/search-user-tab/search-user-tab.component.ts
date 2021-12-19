@@ -34,10 +34,8 @@ export class SearchUserTabComponent implements OnInit {
         };
         this.array_users.push(dto);
       }
-      console.log((<HTMLInputElement>document.getElementById('nome_utilizador')).value);
       this.final_array = this.array_users.filter(s => s.name.includes((<HTMLInputElement>document.getElementById('nome_utilizador')).value))
 
-      console.log(this.final_array);
 
       this._bottomSheet.open(BottomSheetComponent, {
         data: this.final_array

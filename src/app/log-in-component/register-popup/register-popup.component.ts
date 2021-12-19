@@ -51,8 +51,10 @@ export class RegisterPopupComponent implements OnInit {
   userdto : dtoUser | null = {username:'', password:''};
   readonly separatorKeysCodes = [ENTER, COMMA] as const;
   tags: Tag[] = [{name: 'futebol'}, {name: 'ginásios'}];
-  formNewUser: FormGroup;
+  formNewUser: FormGroup = new FormGroup({});
   emocional = EmotionalStateString;
+
+  nome: string | null | undefined;
 
   @Output() onHide = new EventEmitter<boolean>();
 
@@ -60,16 +62,7 @@ export class RegisterPopupComponent implements OnInit {
   isdisable = false;
 
   constructor(private logInService: logInService, private formBuilder: FormBuilder, private ref: ChangeDetectorRef,  private router: Router) {
-    this.formNewUser =  this.formBuilder.group( {
-      username: new FormControl('', [Validators.required, Validators.min(4)]),
-      EmailUser: new FormControl('', [Validators.required, Validators.email]),
-      Nome: new FormControl('', [Validators.required, Validators.pattern('[A-Za-zçãõ ]+')]),
-      pass: new FormControl('', [Validators.required, Validators.pattern('[A-Za-z0-9 ]+'), Validators.min(6)]),
-      passVerify: new FormControl('', [Validators.required, Validators.pattern('[A-Za-z0-9 ]+'), Validators.min(6)]),
-      date: new FormControl('', [Validators.required]),
-      emotionalState: new FormControl('', [Validators.required]),
-      telemovel: new FormControl('', [Validators.pattern('[0-9]{9}')])
-    });
+
   }
 
   ngOnInit(): void {
@@ -96,6 +89,7 @@ export class RegisterPopupComponent implements OnInit {
           (document.getElementById('Palavra_Passe') as HTMLInputElement).value = user.body?.password;
           // @ts-ignore
           (document.getElementById('check_Palavra_Passe') as HTMLInputElement).value = user.body?.password;
+          // @ts-ignore
           this.formNewUser.controls['emotionalState'].setValue(user.body?.emotional_State);
           // @ts-ignore
           (document.getElementById('Nome') as HTMLInputElement).value = user.body?.nome;
@@ -112,8 +106,19 @@ export class RegisterPopupComponent implements OnInit {
           }
           }
         });
+
       }
     }
+    this.formNewUser =  new FormGroup( {
+      username: new FormControl('', [Validators.required, Validators.min(4)]),
+      EmailUser: new FormControl('', [Validators.required, Validators.email]),
+      Nome: new FormControl(this.nome, [Validators.required, Validators.pattern('[A-Za-zçãõ ]+')]),
+      pass: new FormControl('', [Validators.required, Validators.pattern('[A-Za-z0-9 ]+'), Validators.min(6)]),
+      passVerify: new FormControl('', [Validators.required, Validators.pattern('[A-Za-z0-9 ]+'), Validators.min(6)]),
+      date: new FormControl('', [Validators.required]),
+      emotionalState: new FormControl('', [Validators.required]),
+      telemovel: new FormControl('', [Validators.pattern('[0-9]{9}')])
+    });
   }
 
   exitRegister(): void {
@@ -155,7 +160,11 @@ export class RegisterPopupComponent implements OnInit {
   updateUser(): void{
     const tagsFinal = [];
 
-    let response: null;
+    // @ts-ignore
+    this.formNewUser.get('passVerify').markAsTouched();
+    // @ts-ignore
+    this.formNewUser.get('pass').markAsTouched();
+
     if ((document.getElementById('Palavra_Passe') as HTMLInputElement).value === (document.getElementById('check_Palavra_Passe') as HTMLInputElement).value) {
       // @ts-ignore
       this.userdto.username = null;
@@ -163,11 +172,15 @@ export class RegisterPopupComponent implements OnInit {
         this.userdto.email = null;
       } else {
         // @ts-ignore
+        this.formNewUser.get('EmailUser').markAsTouched();
+        // @ts-ignore
         this.userdto.email = (document.getElementById('Email') as HTMLInputElement).value;
       }
       if ((document.getElementById('Nome') as HTMLInputElement).value === this.userdto?.nome) {
         this.userdto.nome = null;
       } else {
+        // @ts-ignore
+        this.formNewUser.get('Nome').markAsTouched();
         // @ts-ignore
         this.userdto.nome = (document.getElementById('Nome') as HTMLInputElement).value;
       }
@@ -175,6 +188,8 @@ export class RegisterPopupComponent implements OnInit {
         if ((document.getElementById('Phone') as HTMLInputElement).value === this.userdto?.phone_Number) {
           this.userdto.phone_Number = null;
         } else {
+          // @ts-ignore
+          this.formNewUser.get('telemovel').markAsTouched();
           // @ts-ignore
           this.userdto.phone_Number = (document.getElementById('Phone') as HTMLInputElement).value;
         }
@@ -185,10 +200,13 @@ export class RegisterPopupComponent implements OnInit {
         // @ts-ignore
         this.userdto.password = (document.getElementById('Palavra_Passe') as HTMLInputElement).value;
       }
+      // @ts-ignore
       if (this.formNewUser.get('emotionalState')?.value === this.userdto?.emotional_State) {
         // @ts-ignore
         this.userdto.emotional_State = null;
       } else {
+        // @ts-ignore
+        this.formNewUser.get('emotionalState').markAsTouched();
         // @ts-ignore
         this.userdto.emotional_State = this.formNewUser.get('emotionalState')?.value;
       }
@@ -196,9 +214,10 @@ export class RegisterPopupComponent implements OnInit {
       if ((document.getElementById('dataNascimento') as HTMLInputElement).value === this.userdto?.data_Nasc_User?.toString().substring(0, (this.userdto?.data_Nasc_User.toString().indexOf('T')))) {
         this.userdto.data_Nasc_User = null;
       } else {
-
         // @ts-ignore
-        this.userdto.data_Nasc_User = new Date(this.userdto?.data_Nasc_User?.toString().substring(0, (this.userdto?.data_Nasc_User.toString().indexOf('T'))));
+        this.formNewUser.get('date').markAsTouched();
+        // @ts-ignore
+        this.userdto.data_Nasc_User = (document.getElementById('dataNascimento') as HTMLInputElement).value
       }
 
       for (let j = 0; j < this.tags.length; j++) {
@@ -214,10 +233,7 @@ export class RegisterPopupComponent implements OnInit {
           tagsFinal.push(this.tags[j].name);
         }
       }
-      console.log(tagsFinal);
       if (tagsFinal.length != 0) {
-        // @ts-ignore
-        console.log(tagsFinal);
         // @ts-ignore
         this.userdto?.tags_Of_User = tagsFinal;
       } else {
@@ -225,7 +241,7 @@ export class RegisterPopupComponent implements OnInit {
         this.userdto?.tags_Of_User = [];
       }
 
-      console.log(this.userdto?.tags_Of_User);
+      // console.log(this.userdto?.tags_Of_User);
 
       if (this.userdto !== null) {
           // @ts-ignore
@@ -241,9 +257,11 @@ export class RegisterPopupComponent implements OnInit {
           if(this.userdto?.tags_Of_User?.length != 0) {
             // @ts-ignore
             this.logInService.addTagsToUser(this.userdto?.tags_Of_User, this.userdto?.id_User).subscribe(
-              () => {alert("Dados atualizados com sucesso!")}
+              () => {}
             );
           }
+            alert("Dados atualizados com sucesso!");
+            this.router.navigate(['feed']);
         });
       }
     } else {
@@ -252,6 +270,7 @@ export class RegisterPopupComponent implements OnInit {
   }
 
   signInRequest(): void {
+    // @ts-ignore
     if (this.formNewUser.status === 'VALID' && this.tags.length !== 0) {
       if ((document.getElementById('Palavra_Passe') as HTMLInputElement).value === (document.getElementById('check_Palavra_Passe') as HTMLInputElement).value) {
         const dtouser: dtoUser = {

@@ -25,13 +25,10 @@ export class IntroductionRequestComponent implements OnInit, AfterContentInit {
   constructor( private logInService: logInService, private introductionService: IntroductionService) { }
 
   ngOnInit(): void {
-    console.log(this.idUser);
-    console.log(this.idUserObjective);
     if(this.idUser){
    this.logInService.getUserById(this.idUser).pipe(
       switchMap((res1: HttpResponse<dtoUser>) =>{
         this.userName = res1.body?.username;
-        console.log(this.userName);
         if(this.idUserObjective!==undefined){
         return this.logInService.getUserById(this.idUserObjective);
         }
@@ -39,7 +36,6 @@ export class IntroductionRequestComponent implements OnInit, AfterContentInit {
       })
     ).subscribe((resposta: HttpResponse<dtoUser>) => {
       this.userNameObjective = resposta.body?.username;
-      console.log(this.userNameObjective);
     });
     }
   }

@@ -8,6 +8,7 @@ import {RelationString} from "../../dto/RelationString";
 import {logInService} from "../../log-in-component/Service/logInService";
 import {RelationDto} from "../../dto/RelationDto";
 import {MatSliderChange} from "@angular/material/slider";
+import {IntroductionService} from "../../Services/IntroductionService";
 
 @Component({
   selector: 'app-friend-panel',
@@ -38,7 +39,7 @@ export class FriendPanelComponent implements OnInit {
   dto: RelationDto | undefined;
 
 
-  constructor(private _user: logInService, private shareMessageService: shareMessage, private _relation: RelationService, public dialog: MatDialog, private _snackBar: MatSnackBar) { }
+  constructor(private _user: logInService, private shareMessageService: shareMessage, private _relation: RelationService, public dialog: MatDialog, private _snackBar: MatSnackBar, private _introduction: IntroductionService) { }
 
   ngOnInit(): void {
 
@@ -64,9 +65,7 @@ export class FriendPanelComponent implements OnInit {
 
       this._relation.getRelationOfUser(this.user_id_message).subscribe(result => {
         this.isFriend = false;
-        console.log(result.body)
         this._user.getUserByUsername(localStorage.getItem('username')).subscribe(resultUser => {
-          console.log(resultUser.body)
           for(let i in result.body){
             // @ts-ignore
             if (result.body[i].id_UserA == this.user_id_message && resultUser.body?.id_User == result.body[i].id_UserB) {
@@ -74,8 +73,6 @@ export class FriendPanelComponent implements OnInit {
               // @ts-ignore
               this.relation_state_message = result.body[i].relation_Type;
 
-              // @ts-ignore
-              console.log(result.body[i]);
               // @ts-ignore
               this.slider_value = result.body[i].connection_Opinion_B_To_A;
             }
@@ -87,8 +84,6 @@ export class FriendPanelComponent implements OnInit {
 
               // @ts-ignore
               this.relation_state_message = result.body[i].relation_Type;
-              // @ts-ignore
-              console.log(result.body[i]);
               // @ts-ignore
               this.slider_value = result.body[i].connection_Opinion_B_To_A;
                 // @ts-ignore
@@ -114,10 +109,16 @@ export class FriendPanelComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       if(result != null || result != undefined){
-        //logica
-        this.openSnackBar();;
+          // @ts-ignore
+          this._user.getUserByUsername(localStorage.getItem('username')).subscribe(response2 => {
+            // @ts-ignore
+          this._introduction.addIntroductionBeginner(result, response2.body?.id_User , this.user_id_message).subscribe(result => {
+            window.location.reload();
+          });
+          });
+
+        this.openSnackBar();
       }
-      console.log(result);
       //this.animal = result;
     });
   }
@@ -135,10 +136,8 @@ export class FriendPanelComponent implements OnInit {
       const dto: RelationDto = {
         relation_Type: this.relation_state_message
       }
-      console.log(result);
       // @ts-ignore
       this._relation.updateRelation(result.body?.id_User, this.user_id_message, dto).subscribe(resultNext => {
-        console.log(resultNext);
         alert('Relação editada com sucesso!')
       })
     })
@@ -146,25 +145,21 @@ export class FriendPanelComponent implements OnInit {
   }
 
   updateConnectionOpinion() {
-    console.log(this.slider_value);
-
     this._user.getUserByUsername(localStorage.getItem('username')).subscribe(result => {
       // @ts-ignore
       this._relation.getRelationOfUser(result.body?.id_User).subscribe(resultGetRelation => {
 
-
-        console.log(resultGetRelation.body);
         let dtoConnection: RelationDto = {};
         // @ts-ignore
         for(let i = 0; i < resultGetRelation.body.length; i++){
-          console.log("=========================")
-          console.log("test a --> " + result.body?.id_User)
-          console.log("test b --> " + this.user_id_message)
+        //  console.log("=========================")
+        //  console.log("test a --> " + result.body?.id_User)
+       //   console.log("test b --> " + this.user_id_message)
           // @ts-ignore
-          console.log("user b --> " + resultGetRelation.body[i].id_UserB);
+     //     console.log("user b --> " + resultGetRelation.body[i].id_UserB);
           // @ts-ignore
-          console.log("user a --> " + resultGetRelation.body[i].id_UserA);
-          console.log("=========================")
+       //   console.log("user a --> " + resultGetRelation.body[i].id_UserA);
+       //   console.log("=========================")
           // @ts-ignore
           if(resultGetRelation.body[i].id_UserA == result.body?.id_User && resultGetRelation.body[i].id_UserB == this.user_id_message){
             dtoConnection = {
@@ -197,7 +192,6 @@ export class FriendPanelComponent implements OnInit {
     if (this.slider_value) {
       return this.slider_value ? 'auto' : this.tickInterval;
     }
-
     return 7;
   }
 }

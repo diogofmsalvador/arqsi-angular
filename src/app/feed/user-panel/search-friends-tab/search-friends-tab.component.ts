@@ -36,11 +36,9 @@ export class SearchFriendsTabComponent implements OnInit {
     this.panelOpenState = false;
       this._user.getUserByUsername(localStorage.getItem('username')).subscribe(
         resultUserId => {
-          console.log(resultUserId);
           // @ts-ignore
           this._relation.getRelationOfUser(resultUserId.body?.id_User).subscribe(
             resultRelation => {
-              console.log(resultRelation);
               this.userToBeAdded = null;
               // @ts-ignore
               for (let i = 0; i < resultRelation.body.length; i++) {
@@ -63,7 +61,6 @@ export class SearchFriendsTabComponent implements OnInit {
                   this.array_users.push(resultAllUsers.body[i]);
                 }
 
-                console.log(this.array_users);
                 for(let i = 0; i < this.array_users.length; i++) {
                   for(let j = 0; j < this.array_userIds.length; j++){
 
@@ -76,7 +73,6 @@ export class SearchFriendsTabComponent implements OnInit {
                       };
                       this.final_users_array.push(dto);
                     } else if(this.array_users[i].id_User == undefined){
-                      console.log(undefined)
                     }
                   }
                 }

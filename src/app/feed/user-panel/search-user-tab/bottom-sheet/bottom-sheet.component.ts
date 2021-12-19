@@ -19,7 +19,7 @@ export class BottomSheetComponent implements OnInit {
   constructor(private shareMessageService: shareMessage, private _user: logInService, private _bottomSheetRef: MatBottomSheetRef<BottomSheetComponent>, @Inject(MAT_BOTTOM_SHEET_DATA) public data: any) { }
 
   ngOnInit(): void {
-    console.log(this.data)
+   // console.log(this.data)
     this.allUserData = this.data;
   }
 

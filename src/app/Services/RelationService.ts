@@ -9,7 +9,7 @@ import {EMPTY, Observable} from "rxjs";
   providedIn: 'root'
 })
 export class RelationService {
-  url='https://arqsi-dotnet.herokuapp.com/api/Relation';
+  url='https://localhost:5001/api/Relation';
 
   customHeaders = new HttpHeaders({
     'Content-Type': 'application/json',

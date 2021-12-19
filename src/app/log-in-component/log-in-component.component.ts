@@ -164,7 +164,6 @@ export class LogInComponentComponent implements OnInit {
 
   getUsers(): void {
     this.logInService.getALlUsersTest().subscribe(value =>{
-      console.log(value);
     });
   }
 
