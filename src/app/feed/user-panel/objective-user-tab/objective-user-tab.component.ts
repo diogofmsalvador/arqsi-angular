@@ -3,9 +3,9 @@ import {MatSnackBar, MatSnackBarHorizontalPosition, MatSnackBarVerticalPosition}
 import {IntroductionMessageDialogComponent} from "../../introduction-message-dialog/introduction-message-dialog.component";
 import {MatDialog} from "@angular/material/dialog";
 import {IntroductionService} from "../../../Services/IntroductionService";
-import {logInService} from "../../../log-in-component/Service/logInService";
+import {logInService} from "../../../Services/logInService";
 import {MissionService} from "../../../Services/MissionService";
-import {dtoUser} from "../../../log-in-component/dto/dtoUser";
+import {dtoUser} from "../../../dto/dtoUser";
 import {retry, switchMap} from "rxjs";
 
 @Component({

@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {BottomSheetComponent} from "../search-user-tab/bottom-sheet/bottom-sheet.component";
 import {MatBottomSheet} from "@angular/material/bottom-sheet";
 import {SimpleUserDto} from "../../../dto/SimpleUserDto";
-import {logInService} from "../../../log-in-component/Service/logInService";
+import {logInService} from "../../../Services/logInService";
 import {RelationService} from "../../../Services/RelationService";
 
 @Component({

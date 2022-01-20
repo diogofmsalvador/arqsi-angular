@@ -2,9 +2,9 @@ import {AfterContentInit, Component, Input, OnInit} from '@angular/core';
 import {MatCard} from "@angular/material/card";
 import {EMPTY, switchMap} from "rxjs";
 import {HttpResponse} from "@angular/common/http";
-import {dtoUser} from "../../../log-in-component/dto/dtoUser";
+import {dtoUser} from "../../../dto/dtoUser";
 import {IntroductionDto} from "../../../dto/IntroductionDto";
-import {logInService} from "../../../log-in-component/Service/logInService";
+import {logInService} from "../../../Services/logInService";
 import {IntroductionService} from "../../../Services/IntroductionService";
 @Component({
   selector: 'app-introduction-request',

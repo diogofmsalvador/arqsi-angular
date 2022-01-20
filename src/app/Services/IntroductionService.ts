@@ -1,7 +1,7 @@
 import {Injectable} from "@angular/core";
 import {HttpClient, HttpHeaders, HttpResponse} from "@angular/common/http";
-import {logInService} from "../log-in-component/Service/logInService";
-import {dtoUser} from "../log-in-component/dto/dtoUser";
+import {logInService} from "./logInService";
+import {dtoUser} from "../dto/dtoUser";
 import {PostDto} from "../dto/PostDto";
 import {IntroductionDto} from "../dto/IntroductionDto";
 import {EMPTY, Observable} from "rxjs";
@@ -12,7 +12,7 @@ import {IntroductionCompletedDto} from "../dto/IntroductionCompletedDto";
   providedIn: 'root'
 })
 export class IntroductionService {
-  url = 'https://localhost:5001/api/Introduction';
+  url = 'https://arqsi-dotnet.herokuapp.com/api/Introduction';
 
   customHeaders = new HttpHeaders({
     'Content-Type': 'application/json',

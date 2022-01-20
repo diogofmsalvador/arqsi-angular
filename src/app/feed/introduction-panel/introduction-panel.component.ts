@@ -2,8 +2,8 @@ import {Component, Input, OnInit} from '@angular/core';
 import {IntroductionService} from "../../Services/IntroductionService";
 import {switchMap} from "rxjs";
 import {HttpResponse} from "@angular/common/http";
-import {dtoUser} from "../../log-in-component/dto/dtoUser";
-import {logInService} from "../../log-in-component/Service/logInService";
+import {dtoUser} from "../../dto/dtoUser";
+import {logInService} from "../../Services/logInService";
 import {IntroductionDto} from "../../dto/IntroductionDto";
 @Component({
   selector: 'app-introduction-panel',

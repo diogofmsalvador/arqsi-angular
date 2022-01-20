@@ -1,7 +1,7 @@
 import {Injectable} from "@angular/core";
 import {HttpClient, HttpHeaders, HttpResponse} from "@angular/common/http";
-import {dtoUser} from "../log-in-component/dto/dtoUser";
-import {logInService} from "../log-in-component/Service/logInService";
+import {dtoUser} from "../dto/dtoUser";
+import {logInService} from "./logInService";
 import {RelationDto} from "../dto/RelationDto";
 import {EMPTY, Observable} from "rxjs";
 import {PostDto} from "../dto/PostDto";
@@ -10,7 +10,7 @@ import {PostDto} from "../dto/PostDto";
   providedIn: 'root'
 })
 export class PostService {
-  url = 'https://localhost:5001//api/Post';
+  url = 'https://arqsi-dotnet.herokuapp.com/api/Post';
 
   customHeaders = new HttpHeaders({
     'Content-Type': 'application/json',

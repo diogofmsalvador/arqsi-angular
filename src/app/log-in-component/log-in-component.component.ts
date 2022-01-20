@@ -1,8 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
-import {logInService} from "./Service/logInService";
+import {logInService} from "../Services/logInService";
 import {Router} from '@angular/router';
-import {dtoUser} from "./dto/dtoUser";
+import {dtoUser} from "../dto/dtoUser";
 import {
   trigger,
   state,

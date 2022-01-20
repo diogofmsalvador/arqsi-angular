@@ -2,14 +2,15 @@ import {Injectable} from "@angular/core";
 import {HttpClient, HttpHeaders, HttpResponse} from "@angular/common/http";
 import {dtoUser} from "../dto/dtoUser";
 import {EMPTY, mergeMap, Observable, ObservableInput, Subscription, switchMap} from "rxjs";
-import {RelationDto} from "../../dto/RelationDto";
+import {RelationDto} from "../dto/RelationDto";
 
 @Injectable({
   providedIn: 'root'
 })
 // tslint:disable-next-line:class-name
 export class logInService {
-  url = 'https://localhost:5001/api/User';
+  url = 'https://arqsi-dotnet.herokuapp.com/api/User';
+  // https://localhost:5001
   customHeaders = new HttpHeaders({
     'Content-Type': 'application/json',
     'Access-Control-Allow-Credentials': 'true',

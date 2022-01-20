@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {MatBottomSheet} from "@angular/material/bottom-sheet";
 import {BottomSheetComponent} from "./bottom-sheet/bottom-sheet.component";
-import {logInService} from "../../../log-in-component/Service/logInService";
+import {logInService} from "../../../Services/logInService";
 import {SimpleUserDto} from "../../../dto/SimpleUserDto";
 
 @Component({

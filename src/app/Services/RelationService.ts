@@ -1,7 +1,7 @@
 import {Injectable} from "@angular/core";
 import {HttpClient, HttpHeaders, HttpResponse} from "@angular/common/http";
-import {logInService} from "../log-in-component/Service/logInService";
-import {dtoUser} from "../log-in-component/dto/dtoUser";
+import {logInService} from "./logInService";
+import {dtoUser} from "../dto/dtoUser";
 import {RelationDto} from "../dto/RelationDto";
 import {EMPTY, Observable} from "rxjs";
 
@@ -9,7 +9,7 @@ import {EMPTY, Observable} from "rxjs";
   providedIn: 'root'
 })
 export class RelationService {
-  url='https://localhost:5001/api/Relation';
+  url='https://arqsi-dotnet.herokuapp.com/api/Relation';
 
   customHeaders = new HttpHeaders({
     'Content-Type': 'application/json',

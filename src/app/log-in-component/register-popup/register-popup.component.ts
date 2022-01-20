@@ -1,8 +1,8 @@
 import {AfterContentInit, ChangeDetectorRef, Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {MatChipInputEvent} from "@angular/material/chips";
 import {COMMA, ENTER} from "@angular/cdk/keycodes";
-import {logInService} from "../Service/logInService";
-import {dtoUser} from "../dto/dtoUser";
+import {logInService} from "../../Services/logInService";
+import {dtoUser} from "../../dto/dtoUser";
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {EmotionalStateString} from "../../dto/EmotionalStateString";
 import {animate, state, style, transition, trigger} from "@angular/animations";

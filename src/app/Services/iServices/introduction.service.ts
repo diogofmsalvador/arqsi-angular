@@ -1,5 +1,5 @@
 import { Observable, of } from 'rxjs';
-import { logInService } from '../../log-in-component/Service/logInService';
+import { logInService } from '../logInService';
 import { IntroductionService } from '../IntroductionService';
 import {HttpResponse} from "@angular/common/http";
 import {IntroductionDto} from "../../dto/IntroductionDto";

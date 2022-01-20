@@ -2,7 +2,7 @@ import {Component, EventEmitter, Inject, OnInit, Output} from '@angular/core';
 import {MAT_BOTTOM_SHEET_DATA, MatBottomSheetRef} from "@angular/material/bottom-sheet";
 import {shareMessage} from "../../../../Services/shareMessage";
 import {SimpleUserDto} from "../../../../dto/SimpleUserDto";
-import {logInService} from "../../../../log-in-component/Service/logInService";
+import {logInService} from "../../../../Services/logInService";
 import {EmotionalStateString} from "../../../../dto/EmotionalStateString";
 
 @Component({

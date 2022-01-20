@@ -1,4 +1,4 @@
-import {EmotionalStateString} from "../../dto/EmotionalStateString";
+import {EmotionalStateString} from "./EmotionalStateString";
 
 export interface dtoUser {
   id_User?: string;

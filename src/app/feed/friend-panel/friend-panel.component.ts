@@ -5,7 +5,7 @@ import {MatSnackBar, MatSnackBarHorizontalPosition, MatSnackBarVerticalPosition}
 import {shareMessage} from "../../Services/shareMessage";
 import {RelationService} from "../../Services/RelationService";
 import {RelationString} from "../../dto/RelationString";
-import {logInService} from "../../log-in-component/Service/logInService";
+import {logInService} from "../../Services/logInService";
 import {RelationDto} from "../../dto/RelationDto";
 import {MatSliderChange} from "@angular/material/slider";
 import {IntroductionService} from "../../Services/IntroductionService";
