@@ -43,6 +43,8 @@ import { UpdateUserComponent } from './update-user/update-user.component';
 import {MatSliderModule} from "@angular/material/slider";
 import { IntroductionMessageDialogComponent } from './feed/introduction-message-dialog/introduction-message-dialog.component';
 import {MatDialogModule} from "@angular/material/dialog";
+import { PostComponent } from './feed/post/post.component';
+import { CreatePostPopUpComponent } from './feed/create-post-pop-up/create-post-pop-up.component';
 
 @NgModule({
   declarations: [
@@ -60,7 +62,9 @@ import {MatDialogModule} from "@angular/material/dialog";
     BottomSheetComponent,
     SearchFriendsTabComponent,
     FriendPanelComponent,
-    IntroductionMessageDialogComponent
+    IntroductionMessageDialogComponent,
+    PostComponent,
+    CreatePostPopUpComponent
   ],
     imports: [
         BrowserModule,

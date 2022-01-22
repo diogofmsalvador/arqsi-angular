@@ -9,7 +9,7 @@ import {EMPTY, Observable} from "rxjs";
   providedIn: 'root'
 })
 export class RelationService {
-  url='https://arqsi-dotnet.herokuapp.com/api/Relation';
+  url='https://localhost:5001/api/Relation';
 
   customHeaders = new HttpHeaders({
     'Content-Type': 'application/json',
@@ -20,8 +20,8 @@ export class RelationService {
 
   public constructor(private http: HttpClient, private userService: logInService) {
   }
-  public getRelationOfUser(userId: string): Observable<HttpResponse<RelationDto>>{
-    return this.http.get<RelationDto>(`${this.url}/getRelationsUser/${userId}`,{headers: this.customHeaders, withCredentials: false, observe: 'response'});
+  public getRelationOfUser(userId: string | undefined): Observable<HttpResponse<RelationDto[]>>{
+    return this.http.get<RelationDto[]>(`${this.url}/getRelationsUser/${userId}`,{headers: this.customHeaders, withCredentials: false, observe: 'response'});
 
   }
   public addRelation(userId: string, userIdFriend: string, relation: RelationDto){

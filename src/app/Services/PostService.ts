@@ -5,16 +5,21 @@ import {logInService} from "./logInService";
 import {RelationDto} from "../dto/RelationDto";
 import {EMPTY, Observable} from "rxjs";
 import {PostDto} from "../dto/PostDto";
+import {PostActionDto} from "../dto/PostActionDto";
+import {CommentDto} from "../dto/CommentDto";
+import {CommentAddDto} from "../dto/CommentAddDto";
 
 @Injectable({
   providedIn: 'root'
 })
 export class PostService {
-  url = 'https://arqsi-dotnet.herokuapp.com/api/Post';
+  url = 'http://localhost:3000/api/post';
 
   customHeaders = new HttpHeaders({
+    'Accept': '*/*',
     'Content-Type': 'application/json',
     'Access-Control-Allow-Credentials': 'true',
+    'Access-Control-Allow-Origin': 'http://localhost:3000',
     'Access-Control-Allow-Methods': 'GET,HEAD,OPTIONS,POST,PUT',
     'Access-Control-Allow-Headers': 'Origin, Content-Type, Accept, Authorization, access-control-allow-methods, access-control-allow-headers, Access-Control-Allow-Origin, X-XSRF-TOKEN'
   });
@@ -22,67 +27,67 @@ export class PostService {
   public constructor(private http: HttpClient, private userService: logInService) {
   }
 
-  public getPostsOfUserFriends(idUser: string): Observable<HttpResponse<PostDto>> {
-        return this.http.get<PostDto>(`${this.url}/getPostsFromFriends/${idUser}`, {
+
+  public addPost(post: PostDto): Observable<HttpResponse<PostDto>> {
+    return this.http.post<PostDto>(`${this.url}/create`, post, {
           headers: this.customHeaders,
           withCredentials: false,
           observe: 'response'
         });
   }
 
-  public addPost(post: PostDto, idUser: string): Observable<HttpResponse<PostDto>> {
-    post.userId_Of_Post =idUser;
-    return this.http.post<PostDto>(`${this.url}`, post, {
-          headers: this.customHeaders,
-          withCredentials: false,
-          observe: 'response'
-        });
-  }
-
-  public updatePost(post: PostDto): Observable<HttpResponse<PostDto>> {
-    return this.http.put<PostDto>(`${this.url}`, post, {
-      headers: this.customHeaders,
-      withCredentials: false,
-      observe: 'response'
-    });
-  }
-
-  public getPost(id: string): Observable<HttpResponse<PostDto>> {
-    return this.http.get<PostDto>(`${this.url}/${id}`, {
-      headers: this.customHeaders,
-      withCredentials: false,
-      observe: 'response'
-    });
-  }
-
-  public deletePost(id: string): Observable<HttpResponse<PostDto>> {
-    return this.http.delete<PostDto>(`${this.url}/${id}`, {
-      headers: this.customHeaders,
-      withCredentials: false,
-      observe: 'response'
-    });
-  }
-
-  public addLikeOrDislikeToPost(idPost: string, isLike: boolean,idUser:string): Observable<HttpResponse<PostDto>> {
-    let urlExtra = 'addLikePost';
-    if (!isLike) {
-      urlExtra = 'addDislikePost';
-    }
-    const likeOrDislikeDto = {
-      _userId: idUser,
-      _postId: idPost
+  public addCommentToPost(idUser: string , text: string, postId: string): Observable<HttpResponse<PostDto>> {
+    const commentDTO: CommentAddDto = {
+      userId: idUser,
+      postId: postId,
+      text: text
     };
-    return this.http.post<PostDto>(`${this.url}/${urlExtra}`, likeOrDislikeDto, {
+    return this.http.post<PostDto>(`${this.url}/addComentToPost`, commentDTO, {
       headers: this.customHeaders,
       withCredentials: false,
       observe: 'response'
     });
   }
+
+  public getPostOfUser(idUser: string | undefined): Observable<HttpResponse<PostDto[]>> {
+    return this.http.get<PostDto[]>(`${this.url}/findPostsOfUser?userId=${idUser}`, {
+      headers: this.customHeaders,
+      withCredentials: false,
+      observe: 'response'
+    });
+  }
+
+  public addLikeOrDislikeToPost(idPost: string , isLike: boolean,idUser:string): Observable<HttpResponse<PostDto>> {
+
+    const likeOrDislikeDto: PostActionDto = {
+      userId: idUser,
+      postId: idPost,
+      isLike: isLike
+    };
+    return this.http.post<PostDto>(`${this.url}/addActionToPost`, likeOrDislikeDto, {
+      headers: this.customHeaders,
+      withCredentials: false,
+      observe: 'response'
+    });
+  }
+  public deleteLikeOrDislikeToPost(idPost: string , isLike: boolean,idUser:string): Observable<HttpResponse<PostDto>> {
+    const likeOrDislikeDto: PostActionDto = {
+      userId: idUser,
+      postId: idPost,
+      isLike: isLike
+    };
+    return this.http.post<PostDto>(`${this.url}/deleteActionToPost`, likeOrDislikeDto, {
+      headers: this.customHeaders,
+      withCredentials: false,
+      observe: 'response'
+    });
+  }
+
 
   public addTagsToPost(idPost: string, Tags: []): Observable<HttpResponse<PostDto>> {
-    const PostTags = {
-      idPost: idPost,
-      setTagDTOs: Tags
+    const PostTags: PostDto = {
+      id: idPost,
+      tagsId: Tags
     }
     return this.http.put<PostDto>(`${this.url}/setTagsToPost`, PostTags, {
       headers: this.customHeaders,
@@ -92,4 +97,19 @@ export class PostService {
   }
 
 
+  public deletePost(id: string): Observable<HttpResponse<PostDto>> {
+    return this.http.delete<PostDto>(`${this.url}/${id}`, {
+      headers: this.customHeaders,
+      withCredentials: false,
+      observe: 'response'
+    });
+  }
+
+  public updatePost(post: PostDto): Observable<HttpResponse<PostDto>> {
+    return this.http.put<PostDto>(`${this.url}`, post, {
+      headers: this.customHeaders,
+      withCredentials: false,
+      observe: 'response'
+    });
+  }
 }

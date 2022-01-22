@@ -7,6 +7,9 @@
       ARQSI Social Game
     </span>
     <span class="example-spacer"></span>
+    <span>
+      Somatório forças de ligação : {{countForca}}
+    </span>
     <span style="float: right; font-size: 15px; margin-right: 5px; color: #3b1f42">{{username}}</span>
     <button [matMenuTriggerFor]="menu" mat-icon-button class="example-icon" style="float: right"
             aria-label="Example icon-button with share icon">
@@ -18,11 +21,7 @@
     <mat-menu #menu="matMenu" style="opacity: 0.8; padding: 0">
       <div class="menu-conf" style="width: 240px">
         <button mat-menu-item (click)="editProfile()"><i class="far fa-user"></i> <span style="float: right">Editar Perfil</span></button>
-        <button mat-menu-item><i class="far fa-image"></i> <span style="float: right">Editar Foto de Perfil</span></button>
-        <!--<hr>
-        <button mat-menu-item><i class="fas fa-user-friends"></i> <span style="float: right">Visualizar Amizades</span></button>
-        <button mat-menu-item><i class="fas fa-smile-wink"></i> <span style="float: right">Visualizar Introduções</span></button>
-        <button mat-menu-item><i class="fas fa-bullseye"></i> <span style="float: right">Visualizar Missões</span></button>-->
+        <button mat-menu-item (click)="addPost()"><i class="fas fa-plus"></i> <span style="float: right">Criar Post</span></button>
       </div>
     </mat-menu>
 
@@ -51,6 +50,11 @@
         </mat-toolbar>
         <div *ngIf="isBackOptionOn" style="height: 90%; overflow-y: auto;overflow-x: hidden">
           <app-friend-panel></app-friend-panel>
+        </div>
+        <div *ngIf="!isBackOptionOn">
+        <div *ngFor="let post of PostsFriend" >
+          <app-post [idUser]="userId" [post]="post"></app-post>
+        </div>
         </div>
       </mat-card>
     </mat-grid-tile>

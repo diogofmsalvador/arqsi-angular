@@ -1,6 +1,14 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {shareMessage} from "../Services/shareMessage";
 import {Router} from "@angular/router";
+import {PostService} from "../Services/PostService";
+import {logInService} from "../Services/logInService";
+import { RelationService } from '../Services/RelationService';
+import {RelationDto} from "../dto/RelationDto";
+import {HttpResponse} from "@angular/common/http";
+import {PostDto} from "../dto/PostDto";
+import {MatDialog} from "@angular/material/dialog";
+import {CreatePostPopUpComponent} from "./create-post-pop-up/create-post-pop-up.component";
 
 @Component({
   selector: 'app-feed',
@@ -13,12 +21,47 @@ export class FeedComponent implements OnInit {
 
   isBackOptionOn: boolean = false;
   username: string = "";
-
-  constructor(private shareMessageService: shareMessage, private router: Router) { }
+  PostsFriend: PostDto[] = [];
+  userId: string | undefined;
+  countForca = 0;
+  constructor(private shareMessageService: shareMessage, private router: Router, private postService: PostService, private logInService: logInService,
+              private relationService: RelationService, private dialog: MatDialog) { }
 
   ngOnInit(): void {
     // @ts-ignore
     this.username = localStorage.getItem('username');
+    this.logInService.getUserByUsername(this.username).subscribe((result)=>{
+      this.userId = result.body?.id_User;
+      this.relationService.getRelationOfUser(result.body?.id_User).subscribe((result2: HttpResponse<RelationDto[]>)=>{
+        let idUserPost;
+        const usersId = [];
+        if(result2.body!== null) {
+          for (let i of result2.body) {
+            this.countForca += Number(i.connection_Strength_A_To_B);
+              if(i.id_UserA === result.body?.id_User){
+                 idUserPost= i.id_UserB;
+              }else{
+                idUserPost = i.id_UserA;
+              }
+            usersId.push(idUserPost);
+          }
+          usersId.push(this.userId);
+          for(let id of usersId){
+            console.log(id);
+            this.postService.getPostOfUser(id).subscribe(result3=>{
+              console.log(result3);
+              if(result3.body!== null){
+                for(let post of result3.body){
+                  this.PostsFriend.push(post);
+                }
+
+              }
+            });
+          }
+        }
+
+      });
+    });
     this.shareMessageService.currentMessage.subscribe(message => {
       if(message != null){
         // @ts-ignore
@@ -48,5 +91,16 @@ export class FeedComponent implements OnInit {
 
   editProfile() {
     this.router.navigate(['/update']);
+  }
+
+  addPost(): void {
+    const dialogRef = this.dialog.open(CreatePostPopUpComponent, {
+      data: {
+        userId: this.userId,
+      },
+      autoFocus: false
+    });
+    dialogRef.afterClosed().subscribe(result => {
+    });
   }
 }

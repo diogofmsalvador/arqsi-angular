@@ -1,8 +1,12 @@
+import {PostActionDto} from "./PostActionDto";
+import {CommentDto} from "./CommentDto";
+
 export interface PostDto{
-    Id_Post: string ;
-    userId_Of_Post?: string;
-    descricao: string;
-    timeStamp_Post: string;
-    imageUrl_Post: string;
-    tags_Of_Post?: [];
+  userId?: string,
+  text? : string,
+  tagsId?: Array<string>,
+  url?: string,
+  postAction?: Array<PostActionDto>,
+  postComment?: Array<CommentDto>,
+  id?:  string
 }

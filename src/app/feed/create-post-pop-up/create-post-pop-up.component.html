@@ -1,0 +1,20 @@
+<form [formGroup]="formPost">
+  <div class=" justify-content-center row ">
+    <h4>Adicionar novo Post</h4>
+  </div>
+  <mat-form-field  appearance="legacy" class=" w-100">
+    <mat-label><i class="fas fa-hand-holding-usd"></i> Url fotografia</mat-label>
+    <input matInput type="text" formControlName="url" >
+  </mat-form-field>
+  <mat-form-field  appearance="legacy" class=" w-100">
+    <mat-label><i class="fas fa-user-alt"></i> Texto</mat-label>
+    <input matInput type="text"  formControlName="text" >
+    <mat-error>
+      Valores entre 1 e 15!
+    </mat-error>
+  </mat-form-field>
+  <div class="mt-1"  style="display:flex;flex-direction:row;justify-content: center">
+    <button mat-flat-button class="buttons mr-1" style="width: 45%;margin-left:2px"  color="primary" (click)="closeDialog()" type="button">Voltar</button>
+    <button mat-flat-button class="buttons ml-1" style="width: 45%;"  color="primary" (click)="addPost()" type="button">Adicionar Post</button>
+  </div>
+</form>

@@ -1,0 +1,22 @@
+<div class="w-100 mt-3 mb-3 ml-1 mr-1" style="border-radius: 8px;height:300px;background-color: white;border-collapse: separate;box-shadow: 4px 4px 5px -1px rgba(0,0,0,0.2);">
+  <div style="max-height:80%">
+    <div style="border-radius: 8px;width: 70%;">
+      <img src="{{post?.url}}" alt="Image Not found">
+    </div>
+  <div style="display:flex;flex-direction: row;justify-content: left"> <!--submitForms-->
+    <button mat-raised-button color="primary" style="width:30%;" class=" p-1" (click)="addLikeOrDislikeToPost(true)"><i *ngIf="isLiked" class="far fa-heart"></i><i *ngIf="!isLiked" class="fas fa-heart"></i> Like</button>
+    <div class="ml-1">{{countLikes}}</div>
+    <div style="width:1%"></div>
+    <button mat-raised-button color="primary" style="width:30%;"  (click)="addLikeOrDislikeToPost(false)" class="p-1 d-inline" > <i class="fas fa-heart-broken"></i> Dislike</button>
+    <div class="ml-1">{{countDislikes}}</div>
+  </div>
+</div>
+  <div style="max-height: 20%; overflow-y: auto">
+    <div class="mt-1 mb-1 row justify-content-center" >
+      <mat-form-field  style="width: 90%;" appearance="legacy">
+        <mat-label>Comentario</mat-label>
+        <input type="text" id="comment" (change)="addComment()"  matInput >
+      </mat-form-field>
+    </div>
+  </div>
+</div>

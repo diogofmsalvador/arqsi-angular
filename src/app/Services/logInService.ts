@@ -9,7 +9,7 @@ import {RelationDto} from "../dto/RelationDto";
 })
 // tslint:disable-next-line:class-name
 export class logInService {
-  url = 'https://arqsi-dotnet.herokuapp.com/api/User';
+  url = 'https://localhost:5001/api/User';
   // https://localhost:5001
   customHeaders = new HttpHeaders({
     'Content-Type': 'application/json',
