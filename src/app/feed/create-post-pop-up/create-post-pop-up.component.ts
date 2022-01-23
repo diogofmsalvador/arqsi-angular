@@ -37,6 +37,7 @@ export class CreatePostPopUpComponent implements OnInit {
         this.postService.addPost(postDto).subscribe(result => {
           if(result.ok){
             alert('Post adicionado com sucesso');
+            this.closeDialog();
           }
         });
     }else {

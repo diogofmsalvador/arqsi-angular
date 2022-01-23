@@ -1,10 +1,10 @@
-<div class="w-100 mt-3 mb-3 ml-1 mr-1" style="border-radius: 8px;height:300px;background-color: white;border-collapse: separate;box-shadow: 4px 4px 5px -1px rgba(0,0,0,0.2);">
+<!--<div class="w-100 mt-3 mb-3 ml-1 mr-1" style="border-radius: 8px;height:300px;background-color: white;border-collapse: separate;box-shadow: 4px 4px 5px -1px rgba(0,0,0,0.2);">
   <div style="max-height:80%">
     <div style="border-radius: 8px;width: 70%;">
       <img src="{{post?.url}}" alt="Image Not found">
     </div>
-  <div style="display:flex;flex-direction: row;justify-content: left"> <!--submitForms-->
-    <button mat-raised-button color="primary" style="width:30%;" class=" p-1" (click)="addLikeOrDislikeToPost(true)"><i *ngIf="isLiked" class="far fa-heart"></i><i *ngIf="!isLiked" class="fas fa-heart"></i> Like</button>
+  <div style="display:flex;flex-direction: row;justify-content: left">
+    <button mat-raised-button color="primary" style="width:30%;" class=" p-1" (click)="addLikeOrDislikeToPost(true)"><i *ngIf="!isLiked" class="far fa-heart"></i><i *ngIf="isLiked" class="fas fa-heart"></i> Like</button>
     <div class="ml-1">{{countLikes}}</div>
     <div style="width:1%"></div>
     <button mat-raised-button color="primary" style="width:30%;"  (click)="addLikeOrDislikeToPost(false)" class="p-1 d-inline" > <i class="fas fa-heart-broken"></i> Dislike</button>
@@ -19,4 +19,43 @@
       </mat-form-field>
     </div>
   </div>
-</div>
+</div> -->
+
+  <div class="card" style="width:100%;margin-right: 0;margin-top:16px;margin-bottom:16px">
+    <div class="card__header">
+      <img src="{{post?.url}}" alt="card__image" class="card__image" width="600">
+    </div>
+    <div class="card__body pb-0">
+      <span class="tag tag-red">Utilizador: {{username}}</span>
+      <h4 class="mb-0">{{post?.text}}</h4>
+      <hr class="mb-0 mt-0">
+      <div style="max-height: 80px; overflow-y: auto; height:80px">
+        <div class="mt-1 mb-1 row justify-content-center">
+          <div *ngFor="let comment of arrComments">
+            <div  style="margin-top:2px;margin-bottom:2px;border: 1px outset rgba(0, 0, 0, 0.2); border-radius: 10px;display: flex; flex-direction: row;justify-content: left" >
+              <div class="row justify-content-center ml-1" style="width: 15%; margin-top:4px">
+              <p>{{comment?.username}}</p>
+              </div>
+              <p style="margin-top:4px"> {{comment?.text}}</p>
+            </div>
+          </div>
+      </div>
+    </div>
+      <hr class="mb-0 mt-0">
+      <div class="row justify-content-start">
+        <mat-form-field  style="width: 100%;" appearance="legacy">
+          <mat-label>Comentario</mat-label>
+          <input type="text" id="comment" (change)="addComment()"  matInput >
+        </mat-form-field>
+      </div>
+      </div>
+    <div class="card__footer pt-0">
+      <div style="display:flex;flex-direction: row;justify-content: left"> <!--submitForms-->
+        <button mat-raised-button color="primary" style="width:40%;" class=" p-1" (click)="addLikeOrDislikeToPost(true)"><i *ngIf="!isLiked" class="far fa-heart"></i><i *ngIf="isLiked" class="fas fa-heart"></i> Like</button>
+        <div class="ml-1 mt-2" style="margin-left:12px; margin-top:2px;margin-right:12px;font-size:50px">{{countLikes}}</div>
+        <button mat-raised-button color="primary" style="width:40%;"  (click)="addLikeOrDislikeToPost(false)" class="p-1 d-inline" > <i class="fas fa-heart-broken"></i> Dislike</button>
+        <div class="ml-1 mt-2 " style="margin-left:12px; margin-top:12px;font-size:50px">{{countDislikes}}</div>
+      </div>
+      </div>
+    </div>
+

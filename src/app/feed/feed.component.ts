@@ -37,7 +37,7 @@ export class FeedComponent implements OnInit {
         const usersId = [];
         if(result2.body!== null) {
           for (let i of result2.body) {
-            this.countForca += Number(i.connection_Strength_A_To_B);
+            this.countForca += Number(i.connection_Opinion_B_To_A);
               if(i.id_UserA === result.body?.id_User){
                  idUserPost= i.id_UserB;
               }else{
@@ -47,9 +47,7 @@ export class FeedComponent implements OnInit {
           }
           usersId.push(this.userId);
           for(let id of usersId){
-            console.log(id);
             this.postService.getPostOfUser(id).subscribe(result3=>{
-              console.log(result3);
               if(result3.body!== null){
                 for(let post of result3.body){
                   this.PostsFriend.push(post);
@@ -96,7 +94,7 @@ export class FeedComponent implements OnInit {
   addPost(): void {
     const dialogRef = this.dialog.open(CreatePostPopUpComponent, {
       data: {
-        userId: this.userId,
+        userId: this.userId
       },
       autoFocus: false
     });

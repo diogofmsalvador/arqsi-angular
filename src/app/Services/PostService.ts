@@ -38,11 +38,11 @@ export class PostService {
 
   public addCommentToPost(idUser: string , text: string, postId: string): Observable<HttpResponse<PostDto>> {
     const commentDTO: CommentAddDto = {
+      idPost: postId,
       userId: idUser,
-      postId: postId,
       text: text
     };
-    return this.http.post<PostDto>(`${this.url}/addComentToPost`, commentDTO, {
+    return this.http.put<PostDto>(`${this.url}/addComentToPost`, commentDTO, {
       headers: this.customHeaders,
       withCredentials: false,
       observe: 'response'
@@ -61,7 +61,7 @@ export class PostService {
 
     const likeOrDislikeDto: PostActionDto = {
       userId: idUser,
-      postId: idPost,
+      idPost: idPost,
       isLike: isLike
     };
     return this.http.post<PostDto>(`${this.url}/addActionToPost`, likeOrDislikeDto, {
@@ -70,13 +70,13 @@ export class PostService {
       observe: 'response'
     });
   }
-  public deleteLikeOrDislikeToPost(idPost: string , isLike: boolean,idUser:string): Observable<HttpResponse<PostDto>> {
+  public deleteLikeOrDislikeToPost(idPost: string , isLike: boolean,idUser:string): Observable<any>{
     const likeOrDislikeDto: PostActionDto = {
       userId: idUser,
-      postId: idPost,
+      idPost: idPost,
       isLike: isLike
     };
-    return this.http.post<PostDto>(`${this.url}/deleteActionToPost`, likeOrDislikeDto, {
+     return this.http.put<PostDto>(`${this.url}/deleteActionToPost`, likeOrDislikeDto, {
       headers: this.customHeaders,
       withCredentials: false,
       observe: 'response'

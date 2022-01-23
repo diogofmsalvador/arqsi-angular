@@ -7,7 +7,7 @@
       ARQSI Social Game
     </span>
     <span class="example-spacer"></span>
-    <span>
+    <span style="margin-right:6px">
       Somatório forças de ligação : {{countForca}}
     </span>
     <span style="float: right; font-size: 15px; margin-right: 5px; color: #3b1f42">{{username}}</span>
@@ -51,9 +51,9 @@
         <div *ngIf="isBackOptionOn" style="height: 90%; overflow-y: auto;overflow-x: hidden">
           <app-friend-panel></app-friend-panel>
         </div>
-        <div *ngIf="!isBackOptionOn">
-        <div *ngFor="let post of PostsFriend" >
-          <app-post [idUser]="userId" [post]="post"></app-post>
+        <div *ngIf="!isBackOptionOn" style="height: 90%; overflow-y: auto;overflow-x: hidden">
+        <div *ngFor="let post of PostsFriend" style="display:flex;flex-direction: row;justify-content: center;margin">
+          <app-post [username]="username" [idUser]="userId" [post]="post"></app-post>
         </div>
         </div>
       </mat-card>
