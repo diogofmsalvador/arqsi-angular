@@ -13,7 +13,7 @@ import {CommentAddDto} from "../dto/CommentAddDto";
   providedIn: 'root'
 })
 export class PostService {
-  url = 'http://localhost:3000/api/post';
+  url = 'https://arqsi-node.herokuapp.com/api/post';
 
   customHeaders = new HttpHeaders({
     'Accept': '*/*',
