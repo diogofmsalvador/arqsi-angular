@@ -98,7 +98,7 @@ export class PostComponent implements OnInit {
         const comment : CommentUi = {
         text: (document.getElementById('comment') as HTMLInputElement).value,
           // @ts-ignore
-        username: localStorage.getItem('username').toString()
+        username: localStorage.getItem('username')
       }
       this.arrComments.push(comment);
       });
