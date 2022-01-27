@@ -52,8 +52,8 @@
           <app-friend-panel></app-friend-panel>
         </div>
         <div *ngIf="!isBackOptionOn" style="height: 90%; overflow-y: auto;overflow-x: hidden">
-        <div *ngFor="let post of PostsFriend" style="display:flex;flex-direction: row;justify-content: center;margin">
-          <app-post [username]="username" [idUser]="userId" [post]="post"></app-post>
+        <div *ngFor="let post of PostsFriend; let i = index" style="display:flex;flex-direction: row;justify-content: center;">
+          <app-post [username]="nomesUsers[i]" [idUser]="userId" [post]="post"></app-post>
         </div>
         </div>
       </mat-card>

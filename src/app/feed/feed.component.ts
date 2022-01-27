@@ -23,6 +23,7 @@ export class FeedComponent implements OnInit {
   username: string = "";
   PostsFriend: PostDto[] = [];
   userId: string | undefined;
+  nomesUsers = [];
   countForca = 0;
   constructor(private shareMessageService: shareMessage, private router: Router, private postService: PostService, private logInService: logInService,
               private relationService: RelationService, private dialog: MatDialog) { }
@@ -48,11 +49,18 @@ export class FeedComponent implements OnInit {
           usersId.push(this.userId);
           for(let id of usersId){
             this.postService.getPostOfUser(id).subscribe(result3=>{
-              if(result3.body!== null){
-                for(let post of result3.body){
-                  this.PostsFriend.push(post);
-                }
+              if(result3.body!== null) {
+                this.logInService.getUserById(id).subscribe(result4 => {
 
+                  if (result3.body !== null) {
+                    for (let post of result3.body) {
+                      // @ts-ignore
+                      this.nomesUsers.push(result4.body?.username);
+                      this.PostsFriend.push(post);
+                    }
+
+                  }
+                });
               }
             });
           }

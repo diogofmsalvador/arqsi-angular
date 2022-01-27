@@ -83,7 +83,7 @@ export class logInService {
     });
   }
 
-  public getUserById(userId: string): Observable<HttpResponse<dtoUser>> {
+  public getUserById(userId: string | undefined): Observable<HttpResponse<dtoUser>> {
     return this.http.get<dtoUser>(`${this.url}/${userId}`, {
       headers: this.customHeaders,
       withCredentials: false,
