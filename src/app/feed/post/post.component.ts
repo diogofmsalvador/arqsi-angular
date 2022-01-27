@@ -105,5 +105,6 @@ export class PostComponent implements OnInit {
 
     }
     (document.getElementById('comment') as HTMLInputElement).value = "";
+    window.location.reload();
   }
 }
