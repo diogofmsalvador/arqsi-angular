@@ -93,10 +93,12 @@ export class PostComponent implements OnInit {
   addComment(): void {
     if(this.post?.id!== undefined && this.idUser!== undefined) {
       this.postService.addCommentToPost(this.idUser, (document.getElementById('comment') as HTMLInputElement).value ,this.post?.id).subscribe(result => {
+        // @ts-ignore
+        console.log(localStorage.getItem("username"));
         const comment : CommentUi = {
         text: (document.getElementById('comment') as HTMLInputElement).value,
           // @ts-ignore
-        username: localStorage.getItem('username')
+        username: localStorage.getItem('username').toString()
       }
       this.arrComments.push(comment);
       });
