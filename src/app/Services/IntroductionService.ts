@@ -12,7 +12,7 @@ import {IntroductionCompletedDto} from "../dto/IntroductionCompletedDto";
   providedIn: 'root'
 })
 export class IntroductionService {
-  url = 'https://localhost:5001/api/Introduction';
+  url = 'https://arqsi-dotnet.herokuapp.com/api/Introduction';
 
   customHeaders = new HttpHeaders({
     'Content-Type': 'application/json',
